@@ -1,53 +1,47 @@
 title: Hytale Server Docker
 description: A Docker image for running Hytale dedicated servers
-author: Terkea
+theme: just-the-docs
 
 url: https://terkea.github.io
 baseurl: /hytale-server
 
-# Theme
-remote_theme: sighingnow/jekyll-gitbook
-
-# Plugins
-plugins:
-  - jekyll-feed
-  - jekyll-seo-tag
-  - jekyll-sitemap
-  - jekyll-remote-theme
-
-# GitBook settings
-toc:
-  enabled: true
-  h_min: 1
-  h_max: 3
-
-# Sidebar navigation
-sidebar:
-  nav: "main"
-
-# Table of contents
-table_of_contents:
-  enabled: true
+# Repository
+aux_links:
+  "GitHub": "https://github.com/Terkea/hytale-server"
+aux_links_new_tab: true
 
 # Footer
-footer:
-  content: "Hytale Server Docker is not affiliated with Hypixel Studios."
-  links:
-    - label: "GitHub"
-      url: "https://github.com/Terkea/hytale-server"
-    - label: "Docker Image"
-      url: "https://ghcr.io/terkea/hytale-server"
+footer_content: "Hytale Server Docker is not affiliated with Hypixel Studios."
 
-# Repository
-repository: Terkea/hytale-server
+# Search
+search_enabled: true
+search:
+  heading_level: 2
+  previews: 3
 
-# Markdown settings
-markdown: kramdown
-kramdown:
-  input: GFM
-  hard_wrap: false
+# Color scheme - dark mode
+color_scheme: dark
 
-# Exclude files
+# Navigation
+nav_sort: case_insensitive
+
+# Back to top
+back_to_top: true
+back_to_top_text: "Back to top"
+
+# Callouts
+callouts:
+  warning:
+    title: Warning
+    color: yellow
+  note:
+    title: Note
+    color: blue
+  important:
+    title: Important
+    color: red
+
+# Exclude
 exclude:
   - Gemfile
   - Gemfile.lock

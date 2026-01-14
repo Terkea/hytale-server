@@ -1,6 +1,8 @@
 ---
 title: Volumes & Data
-permalink: /configuration/volumes
+layout: default
+parent: Configuration
+nav_order: 2
 ---
 
 # Volumes & Data

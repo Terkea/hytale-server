@@ -1,6 +1,8 @@
 ---
 title: Environment Variables
-permalink: /configuration/environment-variables
+layout: default
+parent: Configuration
+nav_order: 1
 ---
 
 # Environment Variables

@@ -1,6 +1,8 @@
 ---
 title: Docker CLI
-permalink: /installation/docker-cli
+layout: default
+parent: Installation
+nav_order: 2
 ---
 
 # Docker CLI Installation

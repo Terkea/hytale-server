@@ -1,6 +1,8 @@
 ---
 title: Docker Compose
-permalink: /installation/docker-compose
+layout: default
+parent: Installation
+nav_order: 1
 ---
 
 # Docker Compose Installation

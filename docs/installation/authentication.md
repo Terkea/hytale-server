@@ -1,6 +1,8 @@
 ---
 title: Authentication
-permalink: /installation/authentication
+layout: default
+parent: Installation
+nav_order: 3
 ---
 
 # Server Authentication
