@@ -81,3 +81,4 @@ Hytale uses **UDP port 5520** (QUIC protocol), not TCP. Make sure your firewall 
 
 {: .important }
 Two OAuth authorizations are required on first run. Watch `docker logs -f hytale-server` for the authorization URLs.
+
