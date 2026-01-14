@@ -1,8 +1,11 @@
 # Hytale Server Docker Image
 
 [![Build](https://github.com/terkea/hytale-server/actions/workflows/build.yml/badge.svg)](https://github.com/terkea/hytale-server/actions/workflows/build.yml)
+[![Docs](https://github.com/terkea/hytale-server/actions/workflows/docs.yml/badge.svg)](https://terkea.github.io/hytale-server/)
 
 A Docker image for running Hytale dedicated servers, inspired by [itzg/minecraft-server](https://github.com/itzg/docker-minecraft-server).
+
+**[Full Documentation](https://terkea.github.io/hytale-server/)** | [FAQ](https://terkea.github.io/hytale-server/faq) | [Configuration](https://terkea.github.io/hytale-server/configuration/)
 
 ## Features
 
