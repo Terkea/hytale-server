@@ -1,0 +1,23 @@
+- title: Home
+  url: /
+
+- title: Installation
+  url: /installation/
+  sections:
+    - title: Docker Compose
+      url: /installation/docker-compose
+    - title: Docker CLI
+      url: /installation/docker-cli
+    - title: Authentication
+      url: /installation/authentication
+
+- title: Configuration
+  url: /configuration/
+  sections:
+    - title: Environment Variables
+      url: /configuration/environment-variables
+    - title: Volumes
+      url: /configuration/volumes
+
+- title: FAQ
+  url: /faq

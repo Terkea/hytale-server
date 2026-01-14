@@ -1,8 +1,6 @@
 ---
 title: Docker Compose
-layout: default
-parent: Installation
-nav_order: 1
+permalink: /installation/docker-compose
 ---
 
 # Docker Compose Installation
@@ -16,9 +14,19 @@ mkdir hytale-server
 cd hytale-server
 ```
 
-## 2. Create docker-compose.yml
+## 2. Create machine-id File
 
-Create a `docker-compose.yml` file:
+Required for persistent authentication:
+
+```bash
+# Linux
+cp /etc/machine-id ./machine-id
+
+# Windows/macOS
+uuidgen | tr -d '-' > machine-id
+```
+
+## 3. Create docker-compose.yml
 
 ```yaml
 services:
@@ -34,42 +42,29 @@ services:
       - MEMORY=4G
     volumes:
       - ./hytale-data:/data
+      - ./machine-id:/etc/machine-id:ro
     stdin_open: true
     tty: true
     restart: unless-stopped
 ```
 
-## 3. Start the Server
+## 4. Start the Server
 
 ```bash
 docker compose up -d
+docker logs -f hytale-server
 ```
 
-## 4. Authenticate
+## 5. Complete OAuth
 
-The server needs OAuth authentication before accepting players:
+Watch the logs for two OAuth prompts:
 
-```bash
-# View logs to see the auth URL
-docker compose logs -f
+1. **Download OAuth** - Authorizes downloading game files
+2. **Server OAuth** - Authenticates server for players
 
-# Or attach to enter commands
-docker attach hytale-server
-```
+Visit the URLs shown and authorize with your Hytale account.
 
-Follow the instructions to complete authentication at `accounts.hytale.com/device`.
-
-{: .note }
-Press `Ctrl+P`, then `Ctrl+Q` to detach from the container without stopping it.
-
-## 5. Verify
-
-Check that the server is running:
-
-```bash
-docker compose ps
-docker compose logs --tail 50
-```
+> **Tip:** Press `Ctrl+C` to stop following logs. The server keeps running in the background.
 
 ## Useful Commands
 

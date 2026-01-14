@@ -1,8 +1,6 @@
 ---
 title: Volumes & Data
-layout: default
-parent: Configuration
-nav_order: 2
+permalink: /configuration/volumes
 ---
 
 # Volumes & Data
@@ -17,27 +15,27 @@ The `/data` volume contains all server data:
 -v ./hytale-data:/data
 ```
 
-{: .important }
-Always mount a volume to `/data` to persist your server data across container restarts.
+> **Important:** Always mount a volume to `/data` to persist your server data across container restarts.
 
 ## Directory Structure
 
 ```
 /data/
-├── config.json          # Server configuration (auto-generated)
-├── HytaleServer.jar     # Server executable (auto-downloaded)
-├── Assets.zip           # Game assets (auto-downloaded)
-├── HytaleServer.aot     # AOT cache (optional, for faster startup)
-├── universe/            # World data
+├── config.json                        # Server configuration (auto-generated)
+├── HytaleServer.jar                   # Server executable (auto-downloaded)
+├── Assets.zip                         # Game assets (auto-downloaded)
+├── HytaleServer.aot                   # AOT cache (for faster startup)
+├── .hytale-downloader-credentials.json # Download OAuth tokens
+├── .hytale-server-credentials.json    # Server OAuth tokens
+├── universe/                          # World data
 │   └── worlds/
-│       └── default/     # Default world
-├── mods/                # Server mods (.zip or .jar)
-├── logs/                # Server logs
-├── backups/             # Automatic backups
-├── bans.json            # Banned players
-├── whitelist.json       # Whitelisted players
-├── permissions.json     # Player permissions
-└── .downloader/         # OAuth credentials cache
+│       └── default/                   # Default world
+├── mods/                              # Server mods (.zip or .jar)
+├── logs/                              # Server logs
+├── backups/                           # Automatic backups
+├── bans.json                          # Banned players
+├── whitelist.json                     # Whitelisted players
+└── permissions.json                   # Player permissions
 ```
 
 ## Important Files
@@ -54,9 +52,11 @@ Contains all world data. **Back this up regularly!**
 
 Place mod files (`.zip` or `.jar`) here. The server will load them automatically.
 
-### .downloader/
+### Credential Files
 
-Stores OAuth tokens from the Hytale Downloader. These persist authentication across restarts.
+OAuth tokens that persist authentication across restarts:
+- `.hytale-downloader-credentials.json` - Download authorization
+- `.hytale-server-credentials.json` - Server authentication
 
 ## Backup Strategy
 

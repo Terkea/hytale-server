@@ -3,7 +3,9 @@
 [![Build](https://github.com/terkea/hytale-server/actions/workflows/build.yml/badge.svg)](https://github.com/terkea/hytale-server/actions/workflows/build.yml)
 [![Docs](https://github.com/terkea/hytale-server/actions/workflows/docs.yml/badge.svg)](https://terkea.github.io/hytale-server/)
 
-A Docker image for running Hytale dedicated servers, inspired by [itzg/minecraft-server](https://github.com/itzg/docker-minecraft-server).
+Run your own [Hytale](https://hytale.com/) dedicated server in Docker with minimal setup. This image handles everything automatically: downloading the server files, authenticating with Hytale's OAuth system, and persisting your credentials so you never have to log in again after the first run.
+
+Whether you're hosting a private server for friends or deploying to production, just start the container, complete two quick OAuth prompts, and you're online.
 
 **[Full Documentation](https://terkea.github.io/hytale-server/)** | [FAQ](https://terkea.github.io/hytale-server/faq) | [Configuration](https://terkea.github.io/hytale-server/configuration/)
 

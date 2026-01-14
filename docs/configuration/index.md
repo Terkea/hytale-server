@@ -1,8 +1,6 @@
 ---
 title: Configuration
-layout: default
-nav_order: 3
-has_children: true
+permalink: /configuration/
 ---
 
 # Configuration
@@ -20,4 +18,7 @@ All settings are passed as environment variables to the Docker container. The en
 | `MEMORY` | `4G` | Java heap size |
 | `SERVER_PORT` | `5520` | UDP port |
 
-See the sub-pages for complete configuration options.
+## Configuration Pages
+
+- [Environment Variables](environment-variables) - All available settings
+- [Volumes](volumes) - Data persistence and file locations

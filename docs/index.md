@@ -1,15 +1,15 @@
 ---
 title: Home
-layout: home
-nav_order: 1
+permalink: /
 ---
 
 # Hytale Server Docker
 
-A Docker image for running Hytale dedicated servers, inspired by [itzg/minecraft-server](https://github.com/itzg/docker-minecraft-server).
+Run your own [Hytale](https://hytale.com/) dedicated server in Docker with minimal setup. This image handles everything automatically: downloading the server files, authenticating with Hytale's OAuth system, and persisting your credentials so you never have to log in again after the first run.
 
-{: .warning }
-Hytale is currently in early access. Server software and this Docker image may change frequently.
+Whether you're hosting a private server for friends or deploying to production, just start the container, complete two quick OAuth prompts, and you're online.
+
+> **Note:** Hytale is currently in early access. Server software and this Docker image may change frequently.
 
 ## Features
 
@@ -76,9 +76,6 @@ Both credentials are saved - all future restarts require **zero logins**.
 
 ## Important Notes
 
-{: .note }
-Hytale uses **UDP port 5520** (QUIC protocol), not TCP. Make sure your firewall and port forwarding are configured for UDP.
+> **Note:** Hytale uses **UDP port 5520** (QUIC protocol), not TCP. Make sure your firewall and port forwarding are configured for UDP.
 
-{: .important }
-Two OAuth authorizations are required on first run. Watch `docker logs -f hytale-server` for the authorization URLs.
-
+> **Important:** Two OAuth authorizations are required on first run. Watch `docker logs -f hytale-server` for the authorization URLs.
