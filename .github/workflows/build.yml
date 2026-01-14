@@ -63,10 +63,9 @@ jobs:
 
       - name: Generate SBOM
         if: github.event_name != 'pull_request'
-        continue-on-error: true
         uses: anchore/sbom-action@v0
         with:
-          image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+          image: ghcr.io/terkea/hytale-server:latest
 
       - name: Create GitHub Release
         if: startsWith(github.ref, 'refs/tags/v')
