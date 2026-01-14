@@ -1,0 +1,56 @@
+# Claude Code directory
+.claude/
+
+# Private documentation
+private_docs/
+
+# Jekyll build output
+docs/_site/
+docs/.jekyll-cache/
+docs/.jekyll-metadata
+docs/Gemfile.lock
+
+# Server data (when testing locally)
+hytale-data/
+data/
+
+# Environment files with secrets
+.env
+.env.local
+.env.*.local
+
+# Server files (proprietary - users must provide their own)
+HytaleServer.jar
+HytaleServer.aot
+Assets.zip
+*.jar
+*.zip
+*.aot
+
+# Logs
+*.log
+logs/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Docker build artifacts
+.docker/
+
+# Temporary files
+tmp/
+temp/
+*.tmp

@@ -1,0 +1,88 @@
+services:
+  hytale:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: hytale-server:latest
+    container_name: hytale-server
+
+    # UDP port for Hytale (QUIC protocol)
+    ports:
+      - "5520:5520/udp"
+
+    # Environment variables - customize as needed
+    environment:
+      # Server Settings
+      - SERVER_NAME=My Hytale Server
+      - MOTD=Welcome to my Hytale server!
+      - PASSWORD=
+      - MAX_PLAYERS=50
+      - MAX_VIEW_RADIUS=12
+      - DEFAULT_WORLD=default
+      - DEFAULT_GAMEMODE=Adventure
+
+      # Memory Settings
+      - MEMORY=4G
+      # - INIT_MEMORY=4G
+      # - MAX_MEMORY=8G
+
+      # JVM Options (optional)
+      # - JVM_OPTS=
+      # - JVM_XX_OPTS=
+      - USE_AOT_CACHE=true
+
+      # Network Settings
+      - SERVER_PORT=5520
+      - BIND_ADDRESS=0.0.0.0
+
+      # User Settings
+      - UID=1000
+      - GID=1000
+      - TZ=UTC
+
+      # Backup Settings
+      - ENABLE_BACKUP=false
+      - BACKUP_FREQUENCY=30
+      - BACKUP_DIR=/data/backups
+
+      # Config Settings
+      - OVERRIDE_CONFIG=true
+      # - SKIP_CONFIG_UPDATE=false
+
+      # Download Settings
+      - AUTO_DOWNLOAD=true
+      - AUTO_UPDATE=true
+      # - PATCHLINE=release
+      # - SKIP_DOWNLOAD=false
+
+      # Debug Settings
+      # - DISABLE_SENTRY=false
+
+    # Persistent storage
+    volumes:
+      - ./hytale-data:/data
+      # Required for persistent server auth (auth persistence Encrypted)
+      # Linux: use /etc/machine-id
+      # Windows: create a machine-id file with a UUID (see README)
+      - ./machine-id:/etc/machine-id:ro
+
+    # Keep container running and allow console access
+    stdin_open: true
+    tty: true
+
+    # Restart policy
+    restart: unless-stopped
+
+    # Resource limits (optional, adjust based on your server)
+    # deploy:
+    #   resources:
+    #     limits:
+    #       cpus: '4'
+    #       memory: 8G
+    #     reservations:
+    #       cpus: '2'
+    #       memory: 4G
+
+# Optional: Use named volumes instead of bind mounts
+# volumes:
+#   hytale-data:
