@@ -69,6 +69,22 @@ setup_timezone() {
 download_server_files() {
     log_info "Checking server files..."
 
+    # Check if running on ARM64 (no downloader available)
+    if [ "$(uname -m)" = "aarch64" ] && [ ! -f "/usr/local/bin/hytale-downloader" ]; then
+        log_warn "ARM64 detected - Hytale Downloader not available for this architecture"
+        if [ ! -f "/data/HytaleServer.jar" ] || [ ! -f "/data/Assets.zip" ]; then
+            log_error "Server files not found!"
+            log_error "On ARM64, you must provide server files manually."
+            log_error "Copy from your Hytale installation to ./hytale-data/:"
+            log_error "  - HytaleServer.jar"
+            log_error "  - Assets.zip"
+            log_error "  - HytaleServer.aot (optional)"
+            exit 1
+        fi
+        log_success "Server files found - continuing on ARM64"
+        return
+    fi
+
     # Skip download if disabled
     if [ "$SKIP_DOWNLOAD" = "true" ]; then
         log_info "Skipping download (SKIP_DOWNLOAD=true)"

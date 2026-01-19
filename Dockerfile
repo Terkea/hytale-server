@@ -23,15 +23,16 @@ RUN apk add --no-cache \
     gcompat \
     unzip
 
-# Download and install Hytale Downloader CLI
+# Download and install Hytale Downloader CLI (amd64 only - Hytale doesn't provide ARM binary)
 ARG TARGETARCH
-RUN mkdir -p /opt/hytale-downloader && \
-    wget -q -O /tmp/hytale-downloader.zip "https://downloader.hytale.com/hytale-downloader.zip" && \
-    unzip -q /tmp/hytale-downloader.zip -d /opt/hytale-downloader && \
-    ARCH=$([ "$TARGETARCH" = "arm64" ] && echo "arm64" || echo "amd64") && \
-    chmod +x /opt/hytale-downloader/hytale-downloader-linux-${ARCH} && \
-    ln -s /opt/hytale-downloader/hytale-downloader-linux-${ARCH} /usr/local/bin/hytale-downloader && \
-    rm /tmp/hytale-downloader.zip
+RUN if [ "$TARGETARCH" = "amd64" ]; then \
+        mkdir -p /opt/hytale-downloader && \
+        wget -q -O /tmp/hytale-downloader.zip "https://downloader.hytale.com/hytale-downloader.zip" && \
+        unzip -q /tmp/hytale-downloader.zip -d /opt/hytale-downloader && \
+        chmod +x /opt/hytale-downloader/hytale-downloader-linux-amd64 && \
+        ln -s /opt/hytale-downloader/hytale-downloader-linux-amd64 /usr/local/bin/hytale-downloader && \
+        rm /tmp/hytale-downloader.zip; \
+    fi
 
 # Environment defaults - Core Server Settings
 ENV SERVER_NAME="Hytale Server" \

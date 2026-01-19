@@ -15,7 +15,7 @@ Whether you're hosting a private server for friends or deploying to production, 
 - **Auto-authentication** - Programmatic OAuth flow for server authentication
 - **Persistent credentials** - Both download and server tokens are saved and auto-refreshed
 - **Easy configuration** - All settings via environment variables
-- **Multi-platform** - Supports `linux/amd64` and `linux/arm64` (Raspberry Pi, Apple Silicon)
+- **Multi-platform** - Supports `linux/amd64` and `linux/arm64` (Raspberry Pi, Apple Silicon)*
 
 ## Quick Start
 
@@ -163,6 +163,10 @@ Credentials are stored in the data volume:
 - `.hytale-server-credentials.json` - Server OAuth tokens
 
 Both auto-refresh. Delete these files to force re-authentication.
+
+### ARM64 Limitations
+
+*On ARM64 (Raspberry Pi, Apple Silicon), auto-download is not available because Hytale only provides an x86 downloader. You must copy server files manually from your local Hytale installation (`HytaleServer.jar`, `Assets.zip`). Server authentication works normally.
 
 ## Directory Structure
 

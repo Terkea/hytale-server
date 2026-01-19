@@ -32,6 +32,19 @@ Hytale requires **Java 25**. This Docker image uses Eclipse Temurin JRE 25, so y
 
 Yes. The image supports both `linux/amd64` and `linux/arm64` architectures. It works on Raspberry Pi 4/5, Apple Silicon Macs (M1/M2/M3), AWS Graviton, and other ARM64 systems.
 
+**Note:** On ARM64, the auto-download feature is not available because Hytale only provides an x86 downloader. You must provide server files manually:
+
+```yaml
+volumes:
+  - ./hytale-data:/data
+  # Copy these files to ./hytale-data/:
+  # - HytaleServer.jar
+  # - Assets.zip
+  # - HytaleServer.aot (optional)
+```
+
+Copy the files from your local Hytale installation, then start the container. Server authentication still works normally.
+
 ### Is this affiliated with Hypixel Studios?
 
 No. This is a community project. Hytale is a trademark of Hypixel Studios.

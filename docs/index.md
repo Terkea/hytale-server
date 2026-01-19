@@ -18,7 +18,7 @@ Whether you're hosting a private server for friends or deploying to production, 
 - **Auto-authentication** - Programmatic OAuth flow for server authentication
 - **Persistent credentials** - Both download and server tokens are saved and auto-refreshed
 - **Easy configuration** - All settings via environment variables
-- **Multi-platform** - Supports `linux/amd64` and `linux/arm64` (Raspberry Pi, Apple Silicon)
+- **Multi-platform** - Supports `linux/amd64` and `linux/arm64` (Raspberry Pi, Apple Silicon)*
 - **Java 25** - Uses Eclipse Temurin JRE 25 as required by Hytale
 - **UDP/QUIC ready** - Properly configured for Hytale's QUIC protocol
 
