@@ -28,6 +28,10 @@ Hytale uses the **QUIC protocol** which runs over UDP, not TCP. This is differen
 
 Hytale requires **Java 25**. This Docker image uses Eclipse Temurin JRE 25, so you don't need to worry about it.
 
+### Does it work on ARM / Raspberry Pi / Apple Silicon?
+
+Yes. The image supports both `linux/amd64` and `linux/arm64` architectures. It works on Raspberry Pi 4/5, Apple Silicon Macs (M1/M2/M3), AWS Graviton, and other ARM64 systems.
+
 ### Is this affiliated with Hypixel Studios?
 
 No. This is a community project. Hytale is a trademark of Hypixel Studios.
