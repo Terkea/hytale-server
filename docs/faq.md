@@ -34,6 +34,42 @@ No. This is a community project. Hytale is a trademark of Hypixel Studios.
 
 ---
 
+## Updates
+
+### How do I update the Hytale server?
+
+Hytale is in early access with frequent updates. To update your server, simply restart the container:
+
+```bash
+docker compose restart
+```
+
+With `AUTO_UPDATE=true` (default), the container checks for updates on every start and downloads new server files automatically.
+
+### How do I check if an update is available?
+
+Watch the logs during startup:
+
+```bash
+docker compose restart
+docker logs -f hytale-server
+```
+
+If an update is available, you'll see download progress in the logs.
+
+### Can I disable automatic updates?
+
+Yes, set `AUTO_UPDATE=false`:
+
+```yaml
+environment:
+  - AUTO_UPDATE=false
+```
+
+The server will only download files if they're missing, not check for newer versions.
+
+---
+
 ## Authentication
 
 ### Do I need to log in every time?

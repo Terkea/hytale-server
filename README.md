@@ -94,6 +94,16 @@ Hytale uses separate OAuth clients with different scopes:
 
 These cannot be combined (Hytale security restriction). **But both credentials are saved** - all future restarts require **zero logins**.
 
+## Updating the Server
+
+Hytale is in early access with frequent updates. To update your server, simply restart the container:
+
+```bash
+docker compose restart
+```
+
+With `AUTO_UPDATE=true` (default), the container automatically checks for and downloads updates on every start. No manual intervention needed.
+
 ## Configuration
 
 ### Environment Variables
