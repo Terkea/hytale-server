@@ -92,27 +92,6 @@ These files are stored in your data volume (`/data/`).
 {: .important }
 On subsequent restarts, **zero OAuth prompts** - the container automatically refreshes and uses saved tokens.
 
-## Machine ID for Auth Persistence
-
-For reliable token persistence, mount a machine-id file:
-
-```yaml
-volumes:
-  - ./hytale-data:/data
-  - ./machine-id:/etc/machine-id:ro  # Required for auth persistence
-```
-
-Create the machine-id file:
-
-```bash
-# Linux
-cp /etc/machine-id ./machine-id
-
-# Windows/macOS - generate a UUID
-uuidgen | tr -d '-' > machine-id
-# Or use: echo "$(cat /proc/sys/kernel/random/uuid | tr -d '-')" > machine-id
-```
-
 ## Skip Download OAuth
 
 If you have server files from your local Hytale installation, you can skip the download OAuth:
@@ -157,7 +136,6 @@ This means the server OAuth flow failed. Check:
 
 - Ensure data volume is mounted correctly
 - Check if credential files exist in `/data/`
-- Verify `machine-id` is mounted for auth persistence
 
 ### "Authorization code expired"
 

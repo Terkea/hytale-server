@@ -61,10 +61,6 @@ services:
     # Persistent storage
     volumes:
       - ./hytale-data:/data
-      # Required for persistent server auth (auth persistence Encrypted)
-      # Linux: use /etc/machine-id
-      # Windows: create a machine-id file with a UUID (see README)
-      - ./machine-id:/etc/machine-id:ro
 
     # Keep container running and allow console access
     stdin_open: true

@@ -37,19 +37,9 @@ services:
       - MEMORY=4G
     volumes:
       - ./hytale-data:/data
-      - ./machine-id:/etc/machine-id:ro
     stdin_open: true
     tty: true
     restart: unless-stopped
-```
-
-Create a `machine-id` file:
-```bash
-# Linux
-cp /etc/machine-id ./machine-id
-
-# Windows/macOS
-uuidgen | tr -d '-' > machine-id
 ```
 
 Start and follow the OAuth prompts:

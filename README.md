@@ -34,19 +34,9 @@ services:
       - MEMORY=4G
     volumes:
       - ./hytale-data:/data
-      - ./machine-id:/etc/machine-id:ro  # Required for auth persistence
     stdin_open: true
     tty: true
     restart: unless-stopped
-```
-
-Create a `machine-id` file (for auth persistence):
-```bash
-# Linux
-cp /etc/machine-id ./machine-id
-
-# Windows/macOS - generate a UUID
-uuidgen | tr -d '-' > machine-id
 ```
 
 Start the server:
@@ -206,7 +196,6 @@ docker build -t hytale-server:latest .
 ### OAuth keeps prompting
 - Ensure data volume is mounted correctly
 - Check if credential files exist in `/data/`
-- Verify `machine-id` is mounted for auth persistence
 
 ### Performance issues
 - Increase memory: `MEMORY=8G`

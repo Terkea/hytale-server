@@ -16,19 +16,7 @@ mkdir hytale-server
 cd hytale-server
 ```
 
-## 2. Create machine-id File
-
-Required for persistent authentication:
-
-```bash
-# Linux
-cp /etc/machine-id ./machine-id
-
-# Windows/macOS
-uuidgen | tr -d '-' > machine-id
-```
-
-## 3. Create docker-compose.yml
+## 2. Create docker-compose.yml
 
 ```yaml
 services:
@@ -44,20 +32,19 @@ services:
       - MEMORY=4G
     volumes:
       - ./hytale-data:/data
-      - ./machine-id:/etc/machine-id:ro
     stdin_open: true
     tty: true
     restart: unless-stopped
 ```
 
-## 4. Start the Server
+## 3. Start the Server
 
 ```bash
 docker compose up -d
 docker logs -f hytale-server
 ```
 
-## 5. Complete OAuth
+## 4. Complete OAuth
 
 Watch the logs for two OAuth prompts:
 

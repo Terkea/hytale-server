@@ -21,23 +21,12 @@ docker pull ghcr.io/terkea/hytale-server:latest
 mkdir -p hytale-data
 ```
 
-## 3. Create machine-id
-
-```bash
-# Linux
-cp /etc/machine-id ./machine-id
-
-# Windows/macOS
-uuidgen | tr -d '-' > machine-id
-```
-
-## 4. Run the Server
+## 3. Run the Server
 
 ```bash
 docker run -d --name hytale-server \
   -p 5520:5520/udp \
   -v ./hytale-data:/data \
-  -v ./machine-id:/etc/machine-id:ro \
   -e SERVER_NAME="My Hytale Server" \
   -e MOTD="Welcome!" \
   -e MAX_PLAYERS=50 \
@@ -48,7 +37,7 @@ docker run -d --name hytale-server \
 
 > **Important:** The `-it` flags are required for interactive authentication.
 
-## 5. Complete OAuth
+## 4. Complete OAuth
 
 ```bash
 docker logs -f hytale-server
