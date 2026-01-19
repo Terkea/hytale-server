@@ -24,11 +24,13 @@ RUN apk add --no-cache \
     unzip
 
 # Download and install Hytale Downloader CLI
+ARG TARGETARCH
 RUN mkdir -p /opt/hytale-downloader && \
     wget -q -O /tmp/hytale-downloader.zip "https://downloader.hytale.com/hytale-downloader.zip" && \
     unzip -q /tmp/hytale-downloader.zip -d /opt/hytale-downloader && \
-    chmod +x /opt/hytale-downloader/hytale-downloader-linux-amd64 && \
-    ln -s /opt/hytale-downloader/hytale-downloader-linux-amd64 /usr/local/bin/hytale-downloader && \
+    ARCH=$([ "$TARGETARCH" = "arm64" ] && echo "arm64" || echo "amd64") && \
+    chmod +x /opt/hytale-downloader/hytale-downloader-linux-${ARCH} && \
+    ln -s /opt/hytale-downloader/hytale-downloader-linux-${ARCH} /usr/local/bin/hytale-downloader && \
     rm /tmp/hytale-downloader.zip
 
 # Environment defaults - Core Server Settings
