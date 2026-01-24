@@ -30,3 +30,4 @@ After installation, you'll need to:
 
 1. [Authenticate the server](authentication) with your Hytale account
 2. [Configure server settings](../configuration/) to customize your server
+3. [Keep your server updated](updating) with the latest patches

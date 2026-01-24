@@ -166,3 +166,128 @@ Or use the in-game console (after server starts):
 ```
 /auth login device
 ```
+
+## Technical Reference
+
+### Token Types
+
+The container manages three types of tokens:
+
+| Token Type | Source | Purpose | Lifetime |
+|------------|--------|---------|----------|
+| **OAuth Access Token** | `oauth.accounts.hytale.com` | API authentication | ~1 hour |
+| **OAuth Refresh Token** | `oauth.accounts.hytale.com` | Refreshes access token | Long-lived |
+| **Session Token** | `sessions.hytale.com` | Server game session | ~1 hour |
+| **Identity Token** | `sessions.hytale.com` | Player identity verification | ~1 hour |
+
+### UUID Relationships
+
+Hytale uses two different UUIDs that must be understood:
+
+| UUID Type | Description | Example |
+|-----------|-------------|---------|
+| **Account UUID** | Your Hytale account (the `.owner` field) | `33f0a7f6-2832-494e-91e0-606583f62cb9` |
+| **Profile UUID** | Your in-game profile (`.profiles[0].uuid`) | `39ba683d-f53e-43df-82ee-ee104690ee05` |
+
+**Important**: The `--owner-uuid` argument passed to the server must match the **Profile UUID** (not the Account UUID), because:
+- Session tokens are created for a specific profile
+- The server validates that the token UUID matches the owner UUID
+
+### Credential File Structure
+
+#### `.hytale-downloader-credentials.json`
+
+```json
+{
+    "access_token": "eyJhbGciOiJSUzI1NiIs...",
+    "refresh_token": "ory_rt_...",
+    "expires_at": 1769262948,
+    "branch": "release"
+}
+```
+
+| Field | Description |
+|-------|-------------|
+| `access_token` | JWT for downloading game files |
+| `refresh_token` | Token to obtain new access token |
+| `expires_at` | Unix timestamp when access token expires |
+| `branch` | Patchline (release, beta, etc.) |
+
+#### `.hytale-server-credentials.json`
+
+```json
+{
+    "access_token": "eyJhbGciOiJSUzI1NiIs...",
+    "expires_in": 3599,
+    "id_token": "eyJhbGciOiJSUzI1NiIs...",
+    "refresh_token": "ory_rt_...",
+    "scope": "openid offline auth:server",
+    "token_type": "bearer"
+}
+```
+
+| Field | Description |
+|-------|-------------|
+| `access_token` | JWT for server API calls |
+| `id_token` | OpenID Connect identity token |
+| `refresh_token` | Token to obtain new access token |
+| `expires_in` | Seconds until access token expires |
+| `scope` | OAuth scopes granted |
+
+### JWT Claims
+
+The access tokens contain these relevant claims:
+
+| Claim | Description |
+|-------|-------------|
+| `sub` | Subject - your Account UUID |
+| `client_id` | OAuth client (`hytale-downloader` or `hytale-server`) |
+| `scp` | Scopes array |
+| `exp` | Expiration timestamp |
+| `iss` | Issuer (`https://oauth.accounts.hytale.com`) |
+
+### Authentication Flow
+
+```
+1. Container starts
+        │
+        ▼
+2. Check for saved OAuth credentials
+   (.hytale-server-credentials.json)
+        │
+        ├─── No credentials ──► Device Auth Flow
+        │                              │
+        ▼                              ▼
+3. Try create_game_session()      User approves OAuth
+   with saved access_token              │
+        │                              ▼
+        ├─── Token expired ──► Refresh token
+        │                              │
+        ▼                              ▼
+4. GET /my-account/get-profiles
+   Returns:
+   - .owner (Account UUID)
+   - .profiles[0].uuid (Profile UUID)
+        │
+        ▼
+5. POST /game-session/new
+   Body: {"uuid": "<Profile UUID>"}
+   Returns:
+   - sessionToken
+   - identityToken
+        │
+        ▼
+6. Start server with:
+   --session-token <sessionToken>
+   --identity-token <identityToken>
+   --owner-uuid <Profile UUID>
+```
+
+### API Endpoints
+
+| Endpoint | Method | Purpose |
+|----------|--------|---------|
+| `oauth.accounts.hytale.com/oauth2/device/auth` | POST | Start device auth flow |
+| `oauth.accounts.hytale.com/oauth2/token` | POST | Exchange/refresh tokens |
+| `account-data.hytale.com/my-account/get-profiles` | GET | Get account profiles |
+| `sessions.hytale.com/game-session/new` | POST | Create game session |

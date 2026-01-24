@@ -373,7 +373,7 @@ create_game_session() {
 
     export HYTALE_SERVER_SESSION_TOKEN="$session_token"
     export HYTALE_SERVER_IDENTITY_TOKEN="$identity_token"
-    export OWNER_UUID="$owner_uuid"
+    export OWNER_UUID="$profile_uuid"
 
     log_success "Game session created!"
     log_info "Session token length: ${#session_token}"

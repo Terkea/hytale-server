@@ -232,12 +232,43 @@ Common causes:
 - Missing server files (check `AUTO_DOWNLOAD=true`)
 - Insufficient memory
 
-### How do I update the image?
+### How do I update the Docker image?
+
+Even if you already have `:latest` locally, Docker will check for a newer version:
 
 ```bash
+# Pull the latest image from registry
+docker compose pull
+
+# Recreate containers with new image
+docker compose up -d
+```
+
+Or as a single command with full cleanup:
+
+```bash
+docker compose down && docker compose pull && docker compose up -d
+```
+
+**If pull doesn't update** (rare caching issues):
+
+```bash
+# Force remove the old image
+docker compose down
+docker rmi ghcr.io/yourusername/hytale-server:latest
 docker compose pull
 docker compose up -d
 ```
+
+**Building locally** (if you cloned the repo):
+
+```bash
+docker compose build --no-cache
+docker compose up -d
+```
+
+{: .note }
+The `:latest` tag is just a name - Docker checks the image digest (hash) to determine if a newer version exists on the registry.
 
 ### How do I force re-authentication?
 
