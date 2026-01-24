@@ -74,6 +74,20 @@ docker compose down && docker compose pull && docker compose up -d
 {: .note }
 Even if you already have `:latest` locally, `docker compose pull` checks the registry for a newer version by comparing image digests.
 
+### Automatic Updates with pull_policy
+
+To automatically check for image updates on every `docker compose up`, add `pull_policy: always` to your `docker-compose.yml`:
+
+```yaml
+services:
+  hytale:
+    image: ghcr.io/terkea/hytale-server:latest
+    pull_policy: always  # Always check for image updates
+    # ... rest of config
+```
+
+With this setting, `docker compose up -d` will automatically pull newer images without needing `docker compose pull` first.
+
 ### Force Update (Cache Issues)
 
 If `docker compose pull` says "Image is up to date" but you know there's a newer version:

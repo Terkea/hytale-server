@@ -270,6 +270,17 @@ docker compose up -d
 {: .note }
 The `:latest` tag is just a name - Docker checks the image digest (hash) to determine if a newer version exists on the registry.
 
+**Auto-update on every restart** - Add `pull_policy: always` to your `docker-compose.yml`:
+
+```yaml
+services:
+  hytale:
+    image: ghcr.io/terkea/hytale-server:latest
+    pull_policy: always  # Always check for image updates
+```
+
+Then `docker compose up -d` will automatically check for and pull newer images.
+
 ### How do I force re-authentication?
 
 ```bash

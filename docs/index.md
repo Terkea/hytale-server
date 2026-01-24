@@ -29,6 +29,7 @@ services:
   hytale:
     image: ghcr.io/terkea/hytale-server:latest
     container_name: hytale-server
+    pull_policy: always  # Always check for image updates
     ports:
       - "5520:5520/udp"
     environment:
